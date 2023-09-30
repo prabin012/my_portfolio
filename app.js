@@ -43,8 +43,7 @@ app.post('/:id/upload', upload.single('image'), async(req, res)=>{
     }
 })
 
-
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5500
 app.listen(PORT,() =>{
     console.log("server is running on port",PORT)
 })
