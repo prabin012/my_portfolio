@@ -38,7 +38,8 @@ res.status(200).json({users,educations,skills,projectss});
 } catch (error) {
     res.status(404).json({
         sucess:false,
-        error,
+        error:error,
+        message:"did not find usere"
     })
     console.log(error);
 }
