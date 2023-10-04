@@ -6,11 +6,10 @@ import { User } from "../schema/user.js";
 export const addEducation = async(req, res)=>{
     try {
         const{id} =req.params;
-        const {userID ,university,universityDtae,educationimage,UniversityStream,UniversityCgpa} =req.body;
+        const {university,date,educationimage,branch,result} =req.body;
 
         const Users = await User.findById(id);
-        // const smaeEdu =await education.findOne(userID);
-
+       
         if(!Users){
             res.status(404).json({
                 success:false,
@@ -18,15 +17,9 @@ export const addEducation = async(req, res)=>{
             })
             return;
         }
-        // if(smaeEdu){
-        //     res.status(404).json({
-        //         success:false,
-        //         message:"already add"
-        //     })
-        //     return;
-        // }
+       
         const newEdu= new education({
-           userID:id, university,universityDtae,educationimage,UniversityStream,UniversityCgpa,
+           userID:id, university,universityDtae:date,educationimage,UniversityStream:branch,UniversityCgpa:result,
         })
         await newEdu.save();
         res.status(200).json({
@@ -45,24 +38,17 @@ export const addEducation = async(req, res)=>{
 
 export const updateUducation =async(req, res)=>{
     try {
-        const{_id,userID,university,universityDtae,educationimage,UniversityStream,UniversityCgpa} =req.body;
-        const Edu = await education.findById(_id);
-        const smaeEdus =await education.findOne({userID});
+        const {id} = req.params;
+        const{university,universityDtae,educationimage,UniversityStream,UniversityCgpa} =req.body;
+        const Edu = await education.findOne({userID:id});
         if(!Edu){
-            res.status(404).json({
+            return res.status(404).json({
                 success:false,
                 message:"user is not exist"
             })
-            return;
+           
         }
-        if(!smaeEdus){
-            res.status(404).json({
-                success:false,
-                message:"you can update only your account"
-            })
-            return;
-        }
-
+       
         await Edu.updateOne({
             university,universityDtae,educationimage,UniversityStream,UniversityCgpa,
         })

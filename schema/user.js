@@ -72,7 +72,6 @@ const userSchema =new mongoose.Schema(
     },
     userimage:{
         type:String,
-        default:null,
     }
 },
 {

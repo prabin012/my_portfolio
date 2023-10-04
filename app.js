@@ -20,28 +20,7 @@ app.use(bodyParser.json());
 
 
 
-const storage = multer.diskStorage({
-    destination:(req, file, cb)=>{
-        cb(null, '../frontend/public/assests/images')
-    },
-    filename:(req, file, cb)=>{
-        cb(null,  Date.now() + file.originalname)
-    }
-})
 
-const upload = multer({
-    storage:storage
-})
-
-app.post('/:id/upload', upload.single('image'), async(req, res)=>{
-    const imageName = req.file.filename;
-    try {
-        await User.updateOne({userimage:imageName});
-        res.status(200).json("uploaded sucessfully.................")
-    } catch (error) {
-        console.log(error)
-    }
-})
 
 const PORT = process.env.PORT || 5500
 app.listen(PORT,() =>{
