@@ -4,28 +4,35 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 // creating user
 export const newUser = async (req, res) => {
-    const { name, email, password, phoneNumber } = req.body;
+    const { name, email, password,username } = req.body;
+    console.log(username);
     try {
+       
         const isEmail = await User.findOne({ email });
-        if (isEmail) {
-            res.status(404).json({
+       const isUsername = await User.findOne({username})
+        if(isEmail) {
+            return res.status(409).json({
                 success: false,
                 messsage: "USer is already created"
             })
-            console.log("user already exits")
         }
-        else {
+        if(isUsername) {
+            return res.status(401).json({
+                success: false,
+                messsage: "username is already taken!"
+            })
+        }
+        else{
             const salt= await bcrypt.genSalt(10);
             const userPassword = await bcrypt.hash(password, salt)
-            User.create({
+            await User.create({
                 name,
-                email,
-                password:userPassword,
-                phoneNumber,
-            });
+                email,username,
+                password: userPassword,
+              });
             res.json({
                 success: true,
-                messsage: "User is created"
+                messsage: "User is created",
             })
         }
     } catch (error) {

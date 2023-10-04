@@ -5,6 +5,7 @@ import {project} from '../schema/projects.js'
 
 
 
+
 export const update =async(req, res)=>{
 try {
     const{id} = req.params;
@@ -43,4 +44,25 @@ res.status(200).json({users,educations,skills,projectss});
     })
     console.log(error);
 }
+}
+
+export const getUserbyId =async(req, res)=>{
+    const {username} = req.params;
+
+    const isUser = await User.findOne({username});
+    if(!isUser){
+        return res.json({
+            meaasge:"Usernot found",
+            success:false
+        })
+    }
+    const uid = isUser._id;
+    const educations = await education.find({userID:uid});
+    const skills = await skill.find({userID:uid});
+    const projectss = await project.find({userID:uid});
+    res.json({
+        meaasge:"successfull",
+        isUser,educations,skills,projectss,
+         success:true
+    });
 }

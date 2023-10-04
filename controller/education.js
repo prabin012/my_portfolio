@@ -6,7 +6,7 @@ import { User } from "../schema/user.js";
 export const addEducation = async(req, res)=>{
     try {
         const{id} =req.params;
-        const {userID ,university,universityDtae,college,collegeDtae,school,schoolStream,educationimage,schoolDtae,UniversityStream,collegetream,collegeCgpa,UniversityCgpa,SchoolCgpa} =req.body;
+        const {userID ,university,universityDtae,educationimage,UniversityStream,UniversityCgpa} =req.body;
 
         const Users = await User.findById(id);
         // const smaeEdu =await education.findOne(userID);
@@ -26,7 +26,7 @@ export const addEducation = async(req, res)=>{
         //     return;
         // }
         const newEdu= new education({
-           userID:id, university,universityDtae,college,collegeDtae,school,schoolStream,educationimage,schoolDtae,UniversityStream,collegetream,collegeCgpa,UniversityCgpa,SchoolCgpa
+           userID:id, university,universityDtae,educationimage,UniversityStream,UniversityCgpa,
         })
         await newEdu.save();
         res.status(200).json({
@@ -45,7 +45,7 @@ export const addEducation = async(req, res)=>{
 
 export const updateUducation =async(req, res)=>{
     try {
-        const{_id,userID,university,universityDtae,college,collegeDtae,school,schoolStream,educationimage,schoolDtae,UniversityStream,collegetream,collegeCgpa,UniversityCgpa,SchoolCgpa} =req.body;
+        const{_id,userID,university,universityDtae,educationimage,UniversityStream,UniversityCgpa} =req.body;
         const Edu = await education.findById(_id);
         const smaeEdus =await education.findOne({userID});
         if(!Edu){
@@ -64,7 +64,7 @@ export const updateUducation =async(req, res)=>{
         }
 
         await Edu.updateOne({
-            university,universityDtae,college,collegeDtae,school,schoolStream,educationimage,schoolDtae,UniversityStream,collegetream,collegeCgpa,UniversityCgpa,SchoolCgpa
+            university,universityDtae,educationimage,UniversityStream,UniversityCgpa,
         })
         res.status(200).json({
             success:true,

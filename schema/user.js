@@ -4,26 +4,23 @@ const userSchema =new mongoose.Schema(
     {
     name:{
         type:String,
-        require:true,
+        required:true,
 
+    },
+    username:{
+        type:String,
+        required:true,
     },
     email:{
         type:String,
-        unique:true,
         required:true,
+        unique:true
     },
     password:{
         type:String,
-        require:true,
-        
+        required:true,
     },
-    phoneNumber:{
-        type:String,
-        require:true,
-        min:10,
-        max:13,
-        require:true,
-    },
+   
     Desc:{
         type:String,
         default:""
@@ -75,7 +72,7 @@ const userSchema =new mongoose.Schema(
     },
     userimage:{
         type:String,
-    
+        default:null,
     }
 },
 {

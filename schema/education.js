@@ -7,58 +7,57 @@ const updateSchema =new mongoose.Schema(
         },
         university:{
             type:String,
-            default:"abc University"
+            default:null
         },
         universityDtae:{
             type:String,
-            default:"start-end year"
+            default:null
         },
         UniversityStream:{
             type:String,
-            default:"Branch"
+            default:null
         },
         UniversityCgpa:{
             type:String,
-                default:"result"
+                default:null
           },
-        college:{
-            type:String,
-            default:"abc College"
-        },
-        collegeDtae:{
-            type:String,
-            default:"start-end year"
-        },
+    //     college:{
+    //         type:String,
+    //         default:null
+    //     },
+    //     collegeDtae:{
+    //         type:String,
+    //         default:null
+    //     },
          
-        collegetream:{
-            type:String,
-            default:"Stream"
-        },
-      collegeCgpa:{
-        type:String,
-            default:"result"
-      },
-        school:{
-            type:String,
-            default:"abc School",
+    //     collegetream:{
+    //         type:String,
+    //         default:null
+    //     },
+    //   collegeCgpa:{
+    //     type:String,
+    //         default:null
+    //   },
+    //     school:{
+    //         type:String,
+    //         default:null,
             
-        },
-        schoolDtae:{
-            type:String,
-            default:"passing year"
-        },
-      SchoolCgpa:{
-        type:String,
-            default:"result"
-      },
-      schoolStream:{
-        type:String,
-        default:"stream"
-      },
+    //     },
+    //     schoolDtae:{
+    //         type:String,
+    //         default:null
+    //     },
+    //   SchoolCgpa:{
+    //     type:String,
+    //         default:null
+    //   },
+    //   schoolStream:{
+    //     type:String,
+    //     default:null
+    //   },
       educationimage:{
         type:String,
-        default:"assests/images/b5.jpg",
-    
+        default:null,
     }
   
 },

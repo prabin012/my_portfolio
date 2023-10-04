@@ -2,10 +2,14 @@ import mongoose from "mongoose";
 
 const skillsSchema =new mongoose.Schema(
     {
+        userName:{
+            type:String
+        },
         userID:{
             type:String,
 
         },
+        
         skillsTittle:{
             type:String,
             default:""
@@ -14,15 +18,11 @@ const skillsSchema =new mongoose.Schema(
             type:String,
             default:""
         },
-        skilllinks:{
+        rating:{
             type:String,
             default:""
         },
-        skillimage:{
-            type:String,
-            default:"assests/images/r1.png",
-        
-        }
+      
   
 },
 {

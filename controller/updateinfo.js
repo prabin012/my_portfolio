@@ -2,9 +2,9 @@ import { User } from "../schema/user.js";
 
 export const updateInformation =async(req, res)=>{
     try {
-        // const{id}
+        const{id} = req.params
         const {username,Desc,Location,Birth, about1,about2,Resuma,phoneNumber,Facebook,Instagram,Github,LinkedIn,Youtube} = req.body;
-        const userId =await User.findById(req.params.id);
+        const userId =await User.findById(id);
         if(!userId){
             res.status(404).json({
                 success:false,
@@ -12,7 +12,7 @@ export const updateInformation =async(req, res)=>{
             })
             return;
         }
-        await User.updateOne(
+        await userId.updateOne(
             {   name:username,
                 phoneNumber,
                 Desc,

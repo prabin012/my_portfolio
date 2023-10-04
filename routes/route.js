@@ -1,5 +1,7 @@
-import {  update } from "../controller/createUser.js";
+import { addskills } from "../controller/addskills.js";
+import {  getUserbyId, update } from "../controller/createUser.js";
 import { addEducation, updateUducation } from "../controller/education.js";
+import { newuserinfo } from "../controller/newuser.js";
 import { addProject, updateProject } from "../controller/project.js";
 import { setSkills, updateSkills } from "../controller/skills.js";
 import { updateInformation } from "../controller/updateinfo.js";
@@ -19,6 +21,9 @@ router.post('/:id/skills', setSkills);
 router.post('/:id/updateskills', updateSkills);
 router.post('/:id/addproject', addProject);
 router.post('/:id/updateproject', updateProject);
+router.post('/:id/newuser', newuserinfo);
+router.patch('/:id/addskills', addskills);
+router.get('/:username', getUserbyId);
 
 
 

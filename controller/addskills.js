@@ -1,27 +1,35 @@
 import { skill } from "../schema/skills.js";
 import { User } from "../schema/user.js";
+import { userInfo } from "../schema/userinfo.js";
 
-export const setSkills = async(req, res)=>{
 
-    const {tittle,level,rating} = req.body;
+export const addskills = async(req, res)=>{
+
+    const {tittle,level,rating, _id} = req.body;
     const {id} = req.params;
-    const isUser = await User.findById(id);
+    const isUser = await userInfo.findOne({userID:id});
+   const users = await userInfo.findById(_id);
     if(!isUser){
         res.status(404).json({
             success:false,
-            message:"not found user"
+            message:"error",
         })
-        return ;
+        return;
     }
-    const newSkills = new skill({
-        userID:id,  userName:isUser.name, skillsTittle:tittle,skilllevel:level,rating:rating
+  
+    console.log(users)
+    await users.push({
+        skills:[{ skillsTittle:tittle,skilllevel:level,skillrating:rating}]
+
     })
-    await newSkills.save();
+   
     res.status(200).json({
-        seccess:true,
-        isUser
+        success:true,
+        message:"updated",
     })
 }
+
+
 
 export const updateSkills =async(req, res)=>{
     const {_id,tittle,level,link,file} = req.body;
