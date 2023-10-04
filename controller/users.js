@@ -17,7 +17,7 @@ export const newUser = async (req, res) => {
             })
         }
         if(isUsername) {
-            return res.status(401).json({
+            return res.status(404).json({
                 success: false,
                 messsage: "username is already taken!"
             })
