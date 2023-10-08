@@ -15,7 +15,7 @@ dataBase();
 
 app.use(cors());
 app.use(express.json());
-app.use(userRouter);
+app.use('/api/',userRouter);
 app.use(bodyParser.json());
 
 
