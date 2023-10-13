@@ -9,6 +9,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 const storage = multer.diskStorage({
     destination: function(cb, req, file){
@@ -28,8 +30,7 @@ app.post('/api/:id/upload', upload.single('image') ,(req, res)=>{
 dataBase();
 
 
-app.use(cors());
-app.use(express.json());
+
 app.use('/api/',userRouter);
 app.use(bodyParser.json());
 
