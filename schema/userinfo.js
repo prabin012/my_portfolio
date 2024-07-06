@@ -119,8 +119,12 @@ const userinfo = new mongoose.Schema(
                 type:String,
                 default:null,
             }
+        }],
+        links:[{
+            tittle:{type:String}
         }]
     },
+
     {timestamps:true}
 );
 

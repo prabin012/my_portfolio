@@ -39,13 +39,7 @@ const userSchema =new mongoose.Schema(
         max:100,
         default:""
     },
-    about2:{
-        type:String,
-        min:20,
-        max:100,
-        default:""
-    },
-   
+  
     facebookLink:{
         type:String,
         default:""
@@ -72,7 +66,20 @@ const userSchema =new mongoose.Schema(
     },
     userimage:{
         type:String,
-    }
+        default:'',
+    },
+    skill:[
+       {
+        type:String,
+        default:'',
+       }
+    ],
+    projects:[
+        {
+            type:String,
+        default:'',
+        }
+    ]
 },
 {
     timestamps:true

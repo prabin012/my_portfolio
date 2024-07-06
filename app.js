@@ -12,21 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const storage = multer.diskStorage({
-    destination: function(cb, req, file){
-        cb(null, './public');
-    },
-    filename: function(cb, req,file){
-        cb(null, Date.now()+'_'+ file.originalname)
-    }
-});
-
-const upload = multer({storage:storage});
-
-app.post('/api/:id/upload', upload.single('image') ,(req, res)=>{
-    res.json({ file: req.file });
-})
-
 dataBase();
 
 
@@ -36,6 +21,22 @@ app.use(bodyParser.json());
 
 
 
+
+const storage = multer.diskStorage({
+    destination: function(cb, req, file){
+        cb(null, '/public/');
+    },
+    filename: function(cb, req,file){
+        cb(null, req.body.name)
+    }
+});
+
+const upload = multer({storage:storage});
+
+app.post('/api/:id/upload', upload.single('image') ,(req, res)=>{
+    res.json({ file: req.file });
+    console.log("success")
+})
 
 
 const PORT = process.env.PORT || 5500
