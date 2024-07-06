@@ -7,9 +7,16 @@ import multer, { diskStorage } from "multer";
 import { User } from "./schema/user.js";
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 const app = express();
-app.use(cors());
+// app.use(cors());
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 
 dataBase();
