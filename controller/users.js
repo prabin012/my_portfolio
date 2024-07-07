@@ -5,9 +5,7 @@ import jwt from 'jsonwebtoken';
 // creating user
 export const newUser = async (req, res) => {
     const { name, email, password,phoneNumber } = req.body;
-    console.log(username);
     try {
-       
         const isEmail = await User.findOne({ email });
         if(isEmail) {
             return res.status(409).json({
