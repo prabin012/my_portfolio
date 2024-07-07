@@ -60,3 +60,22 @@ export const updateProject = async(req, res)=>{
         console.log(error)
     }
 }
+
+export const DeleteProject = async(req, res)=>{
+    const {id} = req.params;
+    const DeletPro = await project.findById(id);
+    try {
+        await DeletPro.deleteOne()
+        res.status(201).json({
+            message:"Deleted Sucessfully...",
+            success:true
+        })
+    } catch (error) {
+        res.status(401).json({
+            message:"something broken",error,
+            success:false
+            
+        })
+    }
+   
+}
