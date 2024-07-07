@@ -9,17 +9,10 @@ export const newUser = async (req, res) => {
     try {
        
         const isEmail = await User.findOne({ email });
-       const isUsername = await User.findOne({username})
         if(isEmail) {
             return res.status(409).json({
                 success: false,
                 messsage: "USer is already created"
-            })
-        }
-        if(isUsername) {
-            return res.status(404).json({
-                success: false,
-                messsage: "username is already taken!"
             })
         }
         else{
