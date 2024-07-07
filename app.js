@@ -9,30 +9,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-// app.use(cors());
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 204
-  };
-  
-  app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
-
-dataBase();
-
-app.use('/api/',userRouter);
-app.use(bodyParser.json());
-
-
 
 const storage = multer.diskStorage({
     destination: function(cb, req, file){
         cb(null, '/public/');
     },
     filename: function(cb, req,file){
-        cb(null, req.body)
+        cb(null, Date.now()+'_'+ file.originalname)
     }
 });
 
@@ -42,6 +27,16 @@ app.post('/api/:id/upload', upload.single('image') ,(req, res)=>{
     res.json({ file: req.file });
     console.log("success")
 })
+
+dataBase();
+
+
+
+app.use('/api/',userRouter);
+app.use(bodyParser.json());
+
+
+
 
 
 const PORT = process.env.PORT || 5500
