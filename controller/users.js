@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 // creating user
 export const newUser = async (req, res) => {
-    const { name, email, password,username } = req.body;
+    const { name, email, password,phoneNumber } = req.body;
     console.log(username);
     try {
        
@@ -27,7 +27,7 @@ export const newUser = async (req, res) => {
             const userPassword = await bcrypt.hash(password, salt)
             await User.create({
                 name,
-                email,username,
+                email,phoneNumber,
                 password: userPassword,
               });
             res.json({

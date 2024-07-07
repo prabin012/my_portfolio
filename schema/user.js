@@ -7,7 +7,7 @@ const userSchema =new mongoose.Schema(
         required:true,
 
     },
-    username:{
+    phoneNumber:{
         type:String,
         required:true,
     },
