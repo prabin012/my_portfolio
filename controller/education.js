@@ -67,3 +67,22 @@ export const updateUducation =async(req, res)=>{
         
     }
 }
+
+export const DeleteEdu = async(req, res)=>{
+    const {id} = req.params;
+    const DeletPro = await education.findById(id);
+    try {
+        await DeletPro.deleteOne()
+        res.status(201).json({
+            message:"Deleted Sucessfully...",
+            success:true
+        })
+    } catch (error) {
+        res.status(401).json({
+            message:"something broken",error,
+            success:false
+            
+        })
+    }
+   
+}

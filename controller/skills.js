@@ -53,3 +53,23 @@ export const updateSkills =async(req, res)=>{
         isSkills
     })
 }
+
+
+export const DeleteSkill = async(req, res)=>{
+    const {id} = req.params;
+    const DeletPro = await skill.findById(id);
+    try {
+        await DeletPro.deleteOne()
+        res.status(201).json({
+            message:"Deleted Sucessfully...",
+            success:true
+        })
+    } catch (error) {
+        res.status(401).json({
+            message:"something broken",error,
+            success:false
+            
+        })
+    }
+   
+}
